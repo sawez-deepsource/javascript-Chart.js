@@ -362,3 +362,17 @@ function styleChanged(style, prevStyle) {
   };
   return JSON.stringify(style, replacer) !== JSON.stringify(prevStyle, replacer);
 }
+
+// === Added for cascading diff test ===
+// Violation: eqeqeq (== instead of ===)
+export function testCascadingDiff(a, b) {
+  if (a == b) {
+    return true;
+  }
+  // Violation: no-use-before-define
+  return helperFunc();
+}
+
+function helperFunc() {
+  return 42;
+}
